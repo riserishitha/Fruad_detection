@@ -12,7 +12,7 @@ export default function SignupPage() {
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3003/register", {
+      const response = await axios.post("https://fruad-detection.onrender.com/register", {
         username: name,
         password: password,
       });

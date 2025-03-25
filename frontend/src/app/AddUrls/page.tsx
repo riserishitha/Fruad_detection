@@ -12,18 +12,18 @@ export default function ReportPhishing() {
   });
   const router = useRouter();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3003/add-phishing-site",
+        "https://fruad-detection.onrender.com/add-phishing-site",
         formData
       );
       alert("Phishing site reported successfully!");

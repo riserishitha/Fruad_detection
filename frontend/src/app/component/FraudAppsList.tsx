@@ -11,7 +11,7 @@ export default function FraudAppsList() {
 
   const fetchApps = async () => {
     try {
-      const res = await axios.get("http://localhost:3003/get-fraud-apps");
+      const res = await axios.get("https://fruad-detection.onrender.com/get-fraud-apps");
       setApps(res.data);
     } catch (error) {
       console.error("Error fetching apps:", error);
@@ -25,7 +25,7 @@ export default function FraudAppsList() {
   const handleInvestigate = async (appId: string, appName: string) => {
     try {
       const response = await axios.put(
-        `http://localhost:3003/investigate-app/${appId}`
+        `https://fruad-detection.onrender.com/investigate-app/${appId}`
       );
       toast.success(`${appName} marked under investigation`, {
         position: "top-right",
@@ -46,7 +46,7 @@ export default function FraudAppsList() {
   const handleBlock = async (appId: string, appName: string) => {
     try {
       const response = await axios.put(
-        `http://localhost:3003/block-app/${appId}`
+        `https://fruad-detection.onrender.com/block-app/${appId}`
       );
       toast.success(`${appName} has been blocked`, {
         position: "top-right",

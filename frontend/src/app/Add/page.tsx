@@ -15,17 +15,18 @@ export default function AddFraudApp() {
   });
   const router = useRouter();
 
-  const handleChange = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [target.name]: target.value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3003/add-fraud-app", formData);
+      await axios.post("https://fruad-detection.onrender.com/add-fraud-app", formData);
       toast.success("Fraud app added successfully!", { position: "top-right" });
       setFormData({
         app_name: "",

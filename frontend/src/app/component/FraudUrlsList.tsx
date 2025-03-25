@@ -24,7 +24,7 @@ export default function FraudUrlsList() {
   useEffect(() => {
     const fetchUrls = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/get-phishing-sites");
+        const response = await axios.get("https://fruad-detection.onrender.com/get-phishing-sites");
         setUrls(response.data);
       } catch (err) {
         setError("Error fetching URLs");
@@ -38,7 +38,7 @@ export default function FraudUrlsList() {
 
   const handleInvestigate = async (urlId: string, urlName: string) => {
     try {
-      const response = await axios.put(`http://localhost:3003/investigate-url/${urlId}`);
+      const response = await axios.put(`https://fruad-detection.onrender.com/investigate-url/${urlId}`);
       if (response.data.message === "Already marked for investigation") {
         toast.warning(`${urlName} is already under investigation`, {
           position: "top-right",
@@ -49,7 +49,7 @@ export default function FraudUrlsList() {
           position: "top-right",
           autoClose: 3000,
         });
-        const updatedUrls = await axios.get("http://localhost:3003/get-phishing-sites");
+        const updatedUrls = await axios.get("https://fruad-detection.onrender.com/get-phishing-sites");
         setUrls(updatedUrls.data);
       }
     } catch (error) {
@@ -62,7 +62,7 @@ export default function FraudUrlsList() {
 
   const handleBlock = async (urlId: string, urlName: string) => {
     try {
-      const response = await axios.put(`http://localhost:3003/block-url/${urlId}`);
+      const response = await axios.put(`https://fruad-detection.onrender.com/block-url/${urlId}`);
       if (response.data.message === "Already blocked") {
         toast.warning(`${urlName} is already blocked`, {
           position: "top-right",
@@ -73,7 +73,7 @@ export default function FraudUrlsList() {
           position: "top-right",
           autoClose: 3000,
         });
-        const updatedUrls = await axios.get("http://localhost:3003/get-phishing-sites");
+        const updatedUrls = await axios.get("https://fruad-detection.onrender.com/get-phishing-sites");
         setUrls(updatedUrls.data);
       }
     } catch (error) {
@@ -115,14 +115,14 @@ export default function FraudUrlsList() {
                   <td className="px-4 py-2 text-center">
                   <button
                   onClick={() => handleBlock(url._id, url.url)}
-                  disabled={url.block}
+                  disabled={url.isBlocked}
                   className={`px-4 py-2 rounded-xl shadow-md transition-all duration-300 cursor-pointer ${
-                    url.block
+                    url.isBlocked
                       ? "bg-gray-400 text-white cursor-not-allowed"
                       : "bg-red-500 hover:bg-red-600 text-white"
                   }`}
                 >
-                  {url.block ? "Blocked" : "Block"}
+                  {url.isBlocked ? "Blocked" : "Block"}
                 </button>
                   </td>
                   <td className="px-4 py-2 text-center">
@@ -130,14 +130,14 @@ export default function FraudUrlsList() {
                   onClick={() =>
                     handleInvestigate(url._id, url.url)
                   }
-                  disabled={url.investigate}
+                  disabled={url.isInvestigated}
                   className={`px-4 py-2 rounded-xl shadow-md transition-all duration-300 cursor-pointer ${
-                    url.investigate
+                    url.isInvestigated
                       ? "bg-gray-400 text-white cursor-not-allowed"
                       : "bg-yellow-400 hover:bg-yellow-500 text-black"
                   }`}
                 >
-                  {url.investigate
+                  {url.isInvestigated
                     ? "Investigated"
                     : "Investigate"}
                 </button>
