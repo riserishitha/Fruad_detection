@@ -24,7 +24,7 @@ export default function FraudAppsList() {
 
   const handleInvestigate = async (appId: string, appName: string) => {
     try {
-      const response = await axios.put(
+      await axios.put(
         `https://fruad-detection.onrender.com/investigate-app/${appId}`
       );
       toast.success(`${appName} marked under investigation`, {
@@ -45,7 +45,7 @@ export default function FraudAppsList() {
 
   const handleBlock = async (appId: string, appName: string) => {
     try {
-      const response = await axios.put(
+      await axios.put(
         `https://fruad-detection.onrender.com/block-app/${appId}`
       );
       toast.success(`${appName} has been blocked`, {
@@ -80,7 +80,7 @@ export default function FraudAppsList() {
           </tr>
         </thead>
         <tbody>
-          {apps.map((app: any, index) => (
+          {apps.map((app: { app_name: string; developer: string; category: string; risk_level: string; reported_on: string; block_status: boolean; _id: string; investigation_status: boolean }, index) => (
             <tr key={index} className="border-t hover:bg-gray-50">
               <td className="px-4 py-2 text-center">{app.app_name}</td>
               <td className="px-4 py-2 text-center">{app.developer}</td>

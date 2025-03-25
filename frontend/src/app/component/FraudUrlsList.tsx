@@ -26,7 +26,7 @@ export default function FraudUrlsList() {
       try {
         const response = await axios.get("https://fruad-detection.onrender.com/get-phishing-sites");
         setUrls(response.data);
-      } catch (err) {
+      } catch{
         setError("Error fetching URLs");
         toast.error("Error fetching URLs");
       } finally {
@@ -52,7 +52,7 @@ export default function FraudUrlsList() {
         const updatedUrls = await axios.get("https://fruad-detection.onrender.com/get-phishing-sites");
         setUrls(updatedUrls.data);
       }
-    } catch (error) {
+    } catch {
       toast.error(`Error investigating ${urlName}`, {
         position: "top-right",
         autoClose: 3000,
@@ -76,7 +76,7 @@ export default function FraudUrlsList() {
         const updatedUrls = await axios.get("https://fruad-detection.onrender.com/get-phishing-sites");
         setUrls(updatedUrls.data);
       }
-    } catch (error) {
+    } catch{
       toast.error(`Error blocking ${urlName}`, {
         position: "top-right",
         autoClose: 3000,

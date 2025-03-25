@@ -22,7 +22,7 @@ export default function ReportPhishing() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+        await axios.post(
         "https://fruad-detection.onrender.com/add-phishing-site",
         formData
       );
