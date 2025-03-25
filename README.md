@@ -43,6 +43,10 @@ It allows monitoring of fraudulent applications and URLs, trend analysis, and se
 - **MongoDB**  
   (Stores user credentials, flagged apps, and URLs)
 
+
+### Deployed link:
+**https://fruad-detection.vercel.app/**
+
 ---
 
 
