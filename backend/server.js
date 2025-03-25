@@ -15,13 +15,14 @@ mongoose.connect(DATABASE_URL)
   .then(() => console.log('MongoDB connected successfully!'))
   .catch((err) => console.error('MongoDB connection failed:', err))
 
+app.use(cors({origin:"*"}));
 app.use(express.json());
 app.use('/', authRoutes);
 app.use('/',AppRoutes);
 app.use('/',UrlRoutes);
-app.use(cors({origin:"*"}));
+// app.use(cors({origin:"*"}));
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   res.send('Hello! Server is running 🚀');
 });
 
